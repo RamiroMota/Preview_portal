@@ -1,6 +1,14 @@
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import {
+  Table,
+  TableHeader,
+  TableBody,
+  TableRow,
+  TableHead,
+  TableCell,
+} from "@/components/ui/table";
+import {
   Select,
   SelectContent,
   SelectItem,
@@ -104,13 +112,16 @@ const PersonalEvaluationModule = () => {
   const [peopleCount, setPeopleCount] = useState(0);
   const [personScores, setPersonScores] = useState<number[]>([]);
   const [selectedValues, setSelectedValues] = useState<number[][]>([]);
+  const [skillsStrengths, setSkillsStrengths] = useState<string>('');
+  const [skillsToImprove, setSkillsToImprove] = useState<string>('');
+  const [performanceLevel, setPerformanceLevel] = useState<string>('');
   const questions = [
     "Realiza su trabajo con enfoque de empatía hacia sus clientes (Internos o Externos)",
     "Demuestra actitud de servicio superando frecuentemente su desempeño requerido, generando valor agregado.",
     "Es eficaz al afrontar situaciones y problemas frecuentes.",
     "Realiza sus funciones y deberes propios del cargo sin que se requiera supervisión permanente.",
     "Soluciona de manera conjunta los problemas comunes de su área.",
-    "Trasmite mensajes asertivamente (en tiempo, lugar y forma)",
+    "Trasmite mensajes acertadamente (en tiempo, lugar y forma)",
     "Muestra una actitud positiva con sus compañeros, comunicándose con respeto Y trabajando de manera armoniosa",
     "Va más allá de los requisitos exigidos, para conocer un producto o servicios que cumpla y supere las expectativas del cliente.",
     "Realiza sus actividades con calidad.",
@@ -125,15 +136,16 @@ const PersonalEvaluationModule = () => {
   ];
 
   return (
-    <div className="container mx-auto p-6 bg-white rounded-lg shadow-md">
-      <h1 className="text-2xl font-bold mb-6 text-center">
+    <div className="p-8 bg-white rounded-lg shadow-md text-sm leading-relaxed">
+      <h1 className="text-xl font-bold mb-4 text-center">
         Evaluación del personal
       </h1>
 
       {/* Evaluator Information */}
+      <h2 className="text-lg font-bold mb-2">Información del Evaluador</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
         <div>
-          <Label htmlFor="evaluator-name">Nombre del evaluador:</Label>
+          <Label htmlFor="evaluator-name" className="font-semibold">Nombre del evaluador:</Label>
           <Input
             id="evaluator-name"
             type="text"
@@ -142,7 +154,7 @@ const PersonalEvaluationModule = () => {
           />
         </div>
         <div>
-          <Label htmlFor="evaluator-role">Cargo o Área académica:</Label>
+          <Label htmlFor="evaluator-role" className="font-semibold">Cargo o Área académica:</Label>
           <Select>
             <SelectTrigger className="w-full">
               <SelectValue placeholder="Selecciona un área académica" />
@@ -188,38 +200,38 @@ const PersonalEvaluationModule = () => {
       {/* Main Responsibilities Table */}
       {Array.from({ length: peopleCount }).map((_, index) => (
         <div key={index} className="mb-6">
-          <h2 className="text-lg font-semibold mb-3">
+          <h2 className="text-lg font-bold mb-2">
             Principales actividades {index + 1}
           </h2>
           <div className="overflow-x-auto">
-            <table className="min-w-full bg-white border border-gray-200">
-              <thead>
-                <tr className="bg-gray-100">
-                  <th className="py-2 px-4 border-b text-left text-sm font-medium text-gray-700">
+            <Table className="min-w-full bg-white border border-gray-200">
+              <TableHeader>
+                <TableRow className="bg-gray-100">
+                  <TableHead className="py-2 px-4 border-b text-left text-sm font-medium text-gray-700">
                     Nombre
-                  </th>
-                  <th className="py-2 px-4 border-b text-left text-sm font-medium text-gray-700">
+                  </TableHead>
+                  <TableHead className="py-2 px-4 border-b text-left text-sm font-medium text-gray-700">
                     Cargo
-                  </th>
-                  <th className="py-2 px-4 border-b text-left text-sm font-medium text-gray-700">
-                    Descripción
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td className="py-2 px-4 border-b text-sm text-gray-800">
+                  </TableHead>
+                  <TableHead className="py-2 px-4 border-b text-left text-sm font-medium text-gray-700">
+                    Descripción de las actividades
+                  </TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                <TableRow>
+                  <TableCell className="py-2 px-4 border-b text-sm text-gray-800">
                     <Input type="text" placeholder="Nombre" />
-                  </td>
-                  <td className="py-2 px-4 border-b text-sm text-gray-800">
+                  </TableCell>
+                  <TableCell className="py-2 px-4 border-b text-sm text-gray-800">
                     <Input type="text" placeholder="Cargo" />
-                  </td>
-                  <td className="py-2 px-4 border-b text-sm text-gray-800">
-                    <Textarea placeholder="Descripción" />
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+                  </TableCell>
+                  <TableCell className="py-2 px-4 border-b text-sm text-gray-800">
+                    <Textarea placeholder="Actividades" />
+                  </TableCell>
+                </TableRow>
+              </TableBody>
+            </Table>
           </div>
         </div>
       ))}
@@ -227,13 +239,13 @@ const PersonalEvaluationModule = () => {
       {/* Evaluation Questions and Parameters (Dynamic) */}
       {Array.from({ length: peopleCount }).map((_, personIndex) => (
         <div key={`person-evaluation-${personIndex}`}>
-          <h2 className="text-lg font-semibold mb-3 mt-6">
+          <h2 className="text-lg font-bold mb-2 mt-6">
             Evaluación para {`Persona ${personIndex + 1}`}
           </h2>
           <div className="mb-6">
             <div className="flex justify-center items-center mb-3 ">
               <div className="flex space-x-4 text-sm font-medium text-gray-800">
-                <h2 className="text-lg text-center font-semibold mb-3">
+                <h2 className="text-lg text-center font-bold mb-2">
                   Escala de evaluación:
                 </h2>
                 <Badge variant="default" className="bg-red-100 text-red-800">
@@ -257,37 +269,37 @@ const PersonalEvaluationModule = () => {
               </div>
             </div>
             <div className="overflow-x-auto">
-              <table className="min-w-full bg-white border border-gray-200">
-                <thead>
-                  <tr className="bg-gray-100">
-                    <th className="py-2 px-4 border-b text-left text-sm font-medium text-gray-700">
+              <Table className="min-w-full bg-white border border-gray-200 shadow-md rounded-md">
+                <TableHeader className="bg-gray-100">
+                  <TableRow className="bg-gray-100">
+                    <TableHead className="py-2 px-4 border-b text-left text-sm font-medium text-gray-800">
                       Pregunta
-                    </th>
-                    <th className="py-2 px-4 border-b text-center text-sm font-medium text-gray-700">
+                    </TableHead>
+                    <TableHead className="py-2 px-4 border-b text-center text-sm font-medium text-gray-800">
                       1
-                    </th>
-                    <th className="py-2 px-4 border-b text-center text-sm font-medium text-gray-700">
+                    </TableHead>
+                    <TableHead className="py-2 px-4 border-b text-center text-sm font-medium text-gray-800">
                       2
-                    </th>
-                    <th className="py-2 px-4 border-b text-center text-sm font-medium text-gray-700">
+                    </TableHead>
+                    <TableHead className="py-2 px-4 border-b text-center text-sm font-medium text-gray-800">
                       3
-                    </th>
-                    <th className="py-2 px-4 border-b text-center text-sm font-medium text-gray-700">
+                    </TableHead>
+                    <TableHead className="py-2 px-4 border-b text-center text-sm font-medium text-gray-800">
                       4
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
+                    </TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
                   {questions.map((question, index) => (
-                    <tr
+                    <TableRow
                       key={index}
                       className={index % 2 === 0 ? "bg-gray-50" : "bg-white"}
                     >
-                      <td className="py-2 px-4 border-b text-sm text-gray-800">
+                      <TableCell className="py-2 px-4 border-b text-sm text-gray-800">
                         {question}
-                      </td>
+                      </TableCell>
                       {[1, 2, 3, 4].map((value) => (
-                        <td
+                        <TableCell
                           key={value}
                           className="py-2 px-4 border-b text-center"
                         >
@@ -321,18 +333,18 @@ const PersonalEvaluationModule = () => {
                               id={`q${personIndex}-${index}-${value}`}
                             />
                           </RadioGroup>
-                        </td>
+                        </TableCell>
                       ))}
-                    </tr>
+                    </TableRow>
                   ))}
-                </tbody>
-              </table>
+                </TableBody>
+              </Table>
             </div>
           </div>
 
           {/* Evaluation Parameters */}
           <div className="mb-6">
-            <h2 className="text-lg text-center font-semibold mb-3">
+            <h2 className="text-lg text-center font-bold mb-2">
               Parámetros de evaluación
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6 text-sm">
@@ -371,26 +383,27 @@ const PersonalEvaluationModule = () => {
       ))}
 
       {/* Additional Sections */}
+      <h2 className="text-lg font-bold mb-2">Secciones Adicionales</h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
         <div>
-          <Label htmlFor="skills-strengths">
+          <Label htmlFor="skills-strengths" className="font-semibold">
             Habilidades y características sobresalientes
           </Label>
-          <Textarea id="skills-strengths" rows={5} />
+          <Textarea id="skills-strengths" rows={5} value={skillsStrengths} onChange={(e) => setSkillsStrengths(e.target.value)} />
         </div>
         <div>
-          <Label htmlFor="skills-to-improve">
+          <Label htmlFor="skills-to-improve" className="font-semibold">
             Habilidades y características a mejorar
           </Label>
-          <Textarea id="skills-to-improve" rows={5} />
+          <Textarea id="skills-to-improve" rows={5} value={skillsToImprove} onChange={(e) => setSkillsToImprove(e.target.value)} />
         </div>
         <div>
-          <Label htmlFor="performance-level">Nivel de desempeño obtenido</Label>
-          <Textarea id="performance-level" rows={5} />
+          <Label htmlFor="performance-level" className="font-semibold">Nivel de desempeño obtenido</Label>
+          <Textarea id="performance-level" rows={5} value={performanceLevel} onChange={(e) => setPerformanceLevel(e.target.value)} />
         </div>
       </div>
 
-      <div className="mt-6 flex justify-center">
+      <div className="mt-6 flex justify-center items-center flex-col">
         <PDFDownloadLink
           document={
             <Document>
@@ -445,6 +458,11 @@ const PersonalEvaluationModule = () => {
                     </View>
                   </View>
                 ))}
+
+                <Text style={styles.subtitle}>Secciones Adicionales</Text>
+                <Text>Habilidades y características sobresalientes: {skillsStrengths}</Text>
+                <Text>Habilidades y características a mejorar: {skillsToImprove}</Text>
+                <Text>Nivel de desempeño obtenido: {performanceLevel}</Text>
               </Page>
             </Document>
           }
