@@ -345,11 +345,11 @@ const PersonalEvaluationModule = () => {
                 <div className="text-yellow-600">Desempeño Regular</div>
               </div>
               <div className="text-center p-3 bg-blue-50 border border-blue-200 rounded-lg">
-                <div className="font-semibold text-blue-700">49 - 53 Pts</div>
+                <div className="font-semibold text-blue-700">49 - 58 Pts</div>
                 <div className="text-blue-600">Desempeño Bueno</div>
               </div>
               <div className="text-center p-3 bg-green-50 border border-green-200 rounded-lg">
-                <div className="font-semibold text-green-700">54 - 64 Pts</div>
+                <div className="font-semibold text-green-700">59 - 68 Pts</div>
                 <div className="text-green-600">Desempeño Excelente</div>
               </div>
             </div>
