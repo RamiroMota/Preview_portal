@@ -105,23 +105,23 @@ const PersonalEvaluationModule = () => {
   const [personScores, setPersonScores] = useState<number[]>([]);
   const [selectedValues, setSelectedValues] = useState<number[][]>([]);
   const questions = [
-    "Lidera su trabajo con enfoque de empatía hacia sus clientes (internos o externos).",
-    "Se mantiene en actitud de servicio, superando frecuentemente su desempeño y/o el de su equipo, generando valor agregado.",
+    "Realiza su trabajo con enfoque de empatía hacia sus clientes (Internos o Externos)",
+    "Demuestra actitud de servicio superando frecuentemente su desempeño requerido, generando valor agregado.",
     "Es eficaz al afrontar situaciones y problemas frecuentes.",
-    "Asume sus funciones y deberes propios del cargo sin que se requiera supervisión permanente.",
+    "Realiza sus funciones y deberes propios del cargo sin que se requiera supervisión permanente.",
     "Soluciona de manera conjunta los problemas comunes de su área.",
-    "Tiene un manejo eficaz de su tiempo (en tiempo, lugar y forma).",
-    "Muestra una actitud positiva con sus compañeros, comunicándose con respeto y aceptando de manera armoniosa.",
-    "Es un nexo de los requisitos exigidos, para conocer un producto o servicios que ofrece y supera las expectativas del cliente.",
-    "Dedica sus estudios con seriedad.",
-    "Programa su trabajo a fin de cumplir con sus compromisos en cuanto a calidad y plazo.",
-    "Se mantiene de manera efectiva los recursos con los cuales cuenta, evitando desperdicios de cualquier índole.",
-    "Es consciente de la importancia de la disciplina en el cumplimiento con lo pactado en el ingreso a sus labores.",
-    "Se mantiene de manera efectiva los recursos con los cuales cuenta, evitando desperdicios de cualquier índole.",
-    "Es consciente de la importancia de la disciplina en el cumplimiento con lo pactado en el ingreso a sus labores.",
-    "Mantiene un compromiso firme con la calidad de su trabajo.",
-    "Conoce los procedimientos que le aplican según su puesto y de la organización en relación a la calidad.",
-    "Mantiene un compromiso firme con la calidad de su trabajo.",
+    "Trasmite mensajes asertivamente (en tiempo, lugar y forma)",
+    "Muestra una actitud positiva con sus compañeros, comunicándose con respeto Y trabajando de manera armoniosa",
+    "Va más allá de los requisitos exigidos, para conocer un producto o servicios que cumpla y supere las expectativas del cliente.",
+    "Realiza sus actividades con calidad.",
+    "Programa su trabajo afín de cumplir con sus compromisos en cuanto a calidad y plazo.",
+    "Administra de manera efectiva los recursos con los cuales cuenta, evitando desperdicios de cualquier índole.",
+    "Cumple siempre con sus asistencias",
+    "Da cumplimiento con la puntualidad en el ingreso a sus labores",
+    "Da cumplimiento con el reglamento interior de trabajo",
+    "Muestra actitud positiva cuando se le realiza una llamada de atención",
+    "Conoce los procedimientos que le aplican según su puesto y de responsabilidad en relación a la calidad.",
+    "Muestra compromiso hacia los objetivos de calidad.",
   ];
 
   return (
