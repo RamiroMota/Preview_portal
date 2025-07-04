@@ -215,7 +215,7 @@ export function CreateSequenceModule() {
 
       <form onSubmit={handleSubmit} className="space-y-6">
         {/* Información General */}
-        <Card>
+        <Card className="shadow-2xl">
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-lg">
               <FileText className="h-5 w-5" />
@@ -275,7 +275,7 @@ export function CreateSequenceModule() {
         </Card>
 
         {/* Información del Docente */}
-        <Card>
+        <Card className="shadow-2xl">
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-lg">
               <User className="h-5 w-5" />
@@ -321,7 +321,7 @@ export function CreateSequenceModule() {
         </Card>
 
         {/* Información Académica */}
-        <Card>
+        <Card className="shadow-2xl">
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-lg">
               <GraduationCap className="h-5 w-5" />
@@ -393,7 +393,7 @@ export function CreateSequenceModule() {
         </Card>
 
         {/* Criterios de Evaluación */}
-        <Card>
+        <Card className="shadow-2xl">
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-lg">
               <CheckCircle className="h-5 w-5" />
@@ -491,7 +491,7 @@ export function CreateSequenceModule() {
         </Card>
 
         {/* Contenido del Curso */}
-        <Card>
+        <Card className="shadow-2xl">
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-lg">
               <Target className="h-5 w-5" />
@@ -580,7 +580,7 @@ export function CreateSequenceModule() {
         </Card>
 
         {/* Actividades */}
-        <Card>
+        <Card className="shadow-2xl">
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-lg">
               <TrendingUp className="h-5 w-5" />
@@ -638,7 +638,7 @@ export function CreateSequenceModule() {
         </Card>
 
         {/* Evaluación */}
-        <Card>
+        <Card className="shadow-2xl">
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-lg">
               <PenTool className="h-5 w-5" />
@@ -717,7 +717,7 @@ export function CreateSequenceModule() {
         </Card>
 
         {/* Firmas y Validaciones */}
-        <Card>
+        <Card className="shadow-2xl">
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-lg">
               <Users className="h-5 w-5" />
@@ -779,7 +779,7 @@ export function CreateSequenceModule() {
             type="button"
             variant="outline"
             onClick={handleReset}
-            className="flex-1 sm:flex-none sm:min-w-[150px]"
+            className="flex-1 sm:flex-none sm:min-w-[150px] border border-gray-300"
           >
             Limpiar Formulario
           </Button>

@@ -7,6 +7,7 @@ import {
   TableRow,
   TableHead,
   TableCell,
+  TableFooter,
 } from "@/components/ui/table";
 import {
   Select,
@@ -20,61 +21,10 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import {
-  PDFDownloadLink,
-  Document,
-  Page,
-  Text,
-  View,
-  StyleSheet,
-} from "@react-pdf/renderer";
+import { PDFDownloadLink } from "@react-pdf/renderer";
+import PersonalPDF from "./personal-pdf";
 
-// Create styles for PDF
-const styles = StyleSheet.create({
-  page: {
-    padding: 30,
-    fontSize: 12,
-    lineHeight: 1.5,
-  },
-  section: {
-    marginBottom: 10,
-  },
-  title: {
-    fontSize: 16,
-    marginBottom: 10,
-    fontWeight: "bold",
-    textAlign: "center",
-  },
-  subtitle: {
-    fontSize: 14,
-    marginBottom: 5,
-    fontWeight: "bold",
-  },
-  table: {
-    display: "flex",
-    width: "auto",
-    borderStyle: "solid",
-    borderWidth: 1,
-    borderRightWidth: 0,
-    borderBottomWidth: 0,
-  },
-  tableRow: {
-    flexDirection: "row",
-  },
-  tableCol: {
-    width: "25%",
-    borderStyle: "solid",
-    borderWidth: 1,
-    borderLeftWidth: 0,
-    borderTopWidth: 0,
-  },
-  tableCell: {
-    margin: "auto",
-    marginTop: 5,
-    marginBottom: 5,
-    fontSize: 10,
-  },
-});
+
 
 const areasAcademicas = [
   "Responsable De La Dirección Académica Y Administrativa",
@@ -112,9 +62,11 @@ const PersonalEvaluationModule = () => {
   const [peopleCount, setPeopleCount] = useState(0);
   const [personScores, setPersonScores] = useState<number[]>([]);
   const [selectedValues, setSelectedValues] = useState<number[][]>([]);
-  const [skillsStrengths, setSkillsStrengths] = useState<string>('');
-  const [skillsToImprove, setSkillsToImprove] = useState<string>('');
-  const [performanceLevel, setPerformanceLevel] = useState<string>('');
+  const [skillsStrengths, setSkillsStrengths] = useState<string>("");
+  const [skillsToImprove, setSkillsToImprove] = useState<string>("");
+  const [performanceLevel, setPerformanceLevel] = useState<string>("");
+  const [evaluatorName, setEvaluatorName] = useState<string>("Fernando Arreola Merino");
+  const [evaluatorRole, setEvaluatorRole] = useState<string>("");
   const questions = [
     "Realiza su trabajo con enfoque de empatía hacia sus clientes (Internos o Externos)",
     "Demuestra actitud de servicio superando frecuentemente su desempeño requerido, generando valor agregado.",
@@ -136,7 +88,7 @@ const PersonalEvaluationModule = () => {
   ];
 
   return (
-    <div className="p-8 bg-white rounded-lg shadow-md text-sm leading-relaxed">
+    <div className="p-8 bg-white rounded-lg shadow-2xl text-sm leading-relaxed">
       <h1 className="text-xl font-bold mb-4 text-center">
         Evaluación del personal
       </h1>
@@ -145,17 +97,21 @@ const PersonalEvaluationModule = () => {
       <h2 className="text-lg font-bold mb-2">Información del Evaluador</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
         <div>
-          <Label htmlFor="evaluator-name" className="font-semibold">Nombre del evaluador:</Label>
+          <Label htmlFor="evaluator-name" className="font-semibold">
+            Nombre del evaluador:
+          </Label>
           <Input
             id="evaluator-name"
             type="text"
-            defaultValue="Fernando Arreola Merino"
-            readOnly
+            value={evaluatorName}
+            onChange={(e) => setEvaluatorName(e.target.value)}
           />
         </div>
         <div>
-          <Label htmlFor="evaluator-role" className="font-semibold">Cargo o Área académica:</Label>
-          <Select>
+          <Label htmlFor="evaluator-role" className="font-semibold">
+            Cargo o Área académica:
+          </Label>
+          <Select onValueChange={setEvaluatorRole} value={evaluatorRole}>
             <SelectTrigger className="w-full">
               <SelectValue placeholder="Selecciona un área académica" />
             </SelectTrigger>
@@ -271,9 +227,9 @@ const PersonalEvaluationModule = () => {
             <div className="overflow-x-auto">
               <Table className="min-w-full bg-white border border-gray-200 shadow-md rounded-md">
                 <TableHeader className="bg-gray-100">
-                  <TableRow className="bg-gray-100">
+                  <TableRow className="bg-gray-300">
                     <TableHead className="py-2 px-4 border-b text-left text-sm font-medium text-gray-800">
-                      Pregunta
+                      Preguntas
                     </TableHead>
                     <TableHead className="py-2 px-4 border-b text-center text-sm font-medium text-gray-800">
                       1
@@ -365,7 +321,7 @@ const PersonalEvaluationModule = () => {
                 <div className="text-green-600">Desempeño Excelente</div>
               </div>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-1 items-center justify-center">
               <div className="text-center justify-center">
                 <Label htmlFor={`score-obtained-${personIndex}`}>
                   Puntaje obtenido
@@ -375,6 +331,7 @@ const PersonalEvaluationModule = () => {
                   type="number"
                   value={personScores[personIndex] || 0}
                   readOnly
+                  className="w-16 text-center"
                 />
               </div>
             </div>
@@ -389,91 +346,63 @@ const PersonalEvaluationModule = () => {
           <Label htmlFor="skills-strengths" className="font-semibold">
             Habilidades y características sobresalientes
           </Label>
-          <Textarea id="skills-strengths" rows={5} value={skillsStrengths} onChange={(e) => setSkillsStrengths(e.target.value)} />
+          <Textarea
+            id="skills-strengths"
+            rows={5}
+            value={skillsStrengths}
+            onChange={(e) => setSkillsStrengths(e.target.value)}
+          />
         </div>
         <div>
           <Label htmlFor="skills-to-improve" className="font-semibold">
             Habilidades y características a mejorar
           </Label>
-          <Textarea id="skills-to-improve" rows={5} value={skillsToImprove} onChange={(e) => setSkillsToImprove(e.target.value)} />
+          <Textarea
+            id="skills-to-improve"
+            rows={5}
+            value={skillsToImprove}
+            onChange={(e) => setSkillsToImprove(e.target.value)}
+          />
         </div>
         <div>
-          <Label htmlFor="performance-level" className="font-semibold">Nivel de desempeño obtenido</Label>
-          <Textarea id="performance-level" rows={5} value={performanceLevel} onChange={(e) => setPerformanceLevel(e.target.value)} />
+          <Label htmlFor="performance-level" className="font-semibold">
+            Nivel de desempeño obtenido
+          </Label>
+          <Textarea
+            id="performance-level"
+            rows={5}
+            value={performanceLevel}
+            onChange={(e) => setPerformanceLevel(e.target.value)}
+          />
         </div>
       </div>
 
       <div className="mt-6 flex justify-center items-center flex-col">
-        <PDFDownloadLink
-          document={
-            <Document>
-              <Page size="LETTER" style={styles.page}>
-                <Text style={styles.title}>Evaluación del Personal</Text>
-
-                <Text style={styles.subtitle}>Información del Evaluador</Text>
-                <Text>Nombre: Fernando Arreola Merino</Text>
-
-                {Array.from({ length: peopleCount }).map((_, personIndex) => (
-                  <View
-                    key={`person-pdf-${personIndex}`}
-                    style={styles.section}
-                  >
-                    <Text style={styles.subtitle}>
-                      Evaluación para Persona {personIndex + 1}
-                    </Text>
-
-                    <View style={styles.table}>
-                      <View style={styles.tableRow}>
-                        <View style={styles.tableCol}>
-                          <Text style={styles.tableCell}>Pregunta</Text>
-                        </View>
-                        <View style={styles.tableCol}>
-                          <Text style={styles.tableCell}>Puntuación</Text>
-                        </View>
-                      </View>
-
-                      {questions.map((question, qIndex) => (
-                        <View key={`q-pdf-${qIndex}`} style={styles.tableRow}>
-                          <View style={styles.tableCol}>
-                            <Text style={styles.tableCell}>{question}</Text>
-                          </View>
-                          <View style={styles.tableCol}>
-                            <Text style={styles.tableCell}>
-                              {selectedValues[personIndex]?.[qIndex] || 0}
-                            </Text>
-                          </View>
-                        </View>
-                      ))}
-
-                      <View style={styles.tableRow}>
-                        <View style={styles.tableCol}>
-                          <Text style={styles.tableCell}>Puntaje Total</Text>
-                        </View>
-                        <View style={styles.tableCol}>
-                          <Text style={styles.tableCell}>
-                            {personScores[personIndex] || 0}
-                          </Text>
-                        </View>
-                      </View>
-                    </View>
-                  </View>
-                ))}
-
-                <Text style={styles.subtitle}>Secciones Adicionales</Text>
-                <Text>Habilidades y características sobresalientes: {skillsStrengths}</Text>
-                <Text>Habilidades y características a mejorar: {skillsToImprove}</Text>
-                <Text>Nivel de desempeño obtenido: {performanceLevel}</Text>
-              </Page>
-            </Document>
-          }
-          fileName="evaluacion_personal.pdf"
-        >
-          {({ loading }) => (
-            <Button disabled={loading}>
-              {loading ? "Generando PDF..." : "Generar PDF"}
-            </Button>
-          )}
-        </PDFDownloadLink>
+        {Array.from({ length: peopleCount }).map((_, personIndex) => (
+          <PDFDownloadLink
+            key={personIndex}
+            document={
+              <PersonalPDF
+                personIndex={personIndex}
+                selectedValues={selectedValues}
+                personScore={personScores[personIndex] || 0}
+                skillsStrengths={skillsStrengths}
+                skillsToImprove={skillsToImprove}
+                performanceLevel={performanceLevel}
+                questions={questions}
+                evaluatorName={evaluatorName}
+                evaluatorRole={evaluatorRole}
+              />
+            }
+            fileName={`evaluacion_persona_${personIndex + 1}.pdf`}
+          >
+            {({ loading }) =>
+              loading
+                ? `Cargando documento para Persona ${personIndex + 1}...`
+                : `Descargar PDF para Persona ${personIndex + 1}`
+            }
+          </PDFDownloadLink>
+        ))}
       </div>
     </div>
   );

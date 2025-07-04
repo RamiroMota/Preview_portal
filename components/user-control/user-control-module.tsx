@@ -20,12 +20,12 @@ export function UserControlModule() {
       </div>
 
       {/* Tabs Navigation */}
-      <Card>
+      <Card className="shadow-2xl">
         <CardHeader className="pb-3">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-            <div className="flex space-x-1 bg-gray-100 p-1 rounded-lg">
+            <div className="flex space-x-1 bg-gray-100 p-1 rounded-lg border border-gray-500">
               <Button
-                variant={activeTab === "users" ? "default" : "ghost"}
+                variant={activeTab === "users" ? "control" : "default"}
                 size="sm"
                 onClick={() => setActiveTab("users")}
                 className={`flex items-center gap-2 ${
@@ -36,7 +36,7 @@ export function UserControlModule() {
                 Usuarios
               </Button>
               <Button
-                variant={activeTab === "roles" ? "default" : "ghost"}
+                variant={activeTab === "roles" ? "control" : "default"}
                 size="sm"
                 onClick={() => setActiveTab("roles")}
                 className={`flex items-center gap-2 ${

@@ -9,6 +9,7 @@ import {
   PlusCircle,
   Menu,
   Users,
+  Settings,
 } from "lucide-react";
 import type { ActiveModule } from "./dashboard";
 import { useState } from "react";
@@ -47,13 +48,13 @@ const menuItems = [
   {
     id: "personal-evaluation" as ActiveModule,
     label: "Evaluación del personal",
-    icon: Users, // Using Users icon for now, can be changed later
+    icon: Users,
     description: "Gestión de evaluación de personal",
   },
   {
     id: "user-control" as ActiveModule,
     label: "Control de Usuarios",
-    icon: Users,
+    icon: Settings,
     description: "Gestión de usuarios y permisos",
   },
 ];
@@ -64,10 +65,10 @@ function SidebarContent({
   onItemClick,
 }: SidebarProps & { onItemClick?: () => void }) {
   return (
-    <div className="w-full h-full bg-white flex flex-col">
+    <div className="w-full h-full bg-white  flex flex-col">
       <div className="p-4 sm:p-6 border-b border-gray-200">
         <div className="flex items-center space-x-3">
-          <div className="bg-blue-600 p-2 rounded-lg">
+          <div className="bg-blue-600 p-2 rounded-full">
             <GraduationCap className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
           </div>
           <div className="min-w-0 flex-1">
@@ -125,7 +126,7 @@ function SidebarContent({
       </nav>
 
       <div className="p-3 sm:p-4 border-t border-gray-200">
-        <div className="bg-blue-50 p-3 rounded-lg">
+        <div className="bg-blue-100 p-3 rounded-lg">
           <p className="text-xs text-blue-800 font-medium">
             Portal Académico v1.1.9
           </p>
@@ -164,7 +165,7 @@ export function Sidebar({ activeModule, onModuleChange }: SidebarProps) {
       </div>
 
       {/* Desktop Sidebar */}
-      <div className="hidden lg:flex w-80 border-r border-gray-200">
+      <div className="hidden lg:flex w-80 border-r border-gray-200 shadow-lg">
         <SidebarContent
           activeModule={activeModule}
           onModuleChange={onModuleChange}

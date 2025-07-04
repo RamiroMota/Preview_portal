@@ -1,59 +1,66 @@
-"use client"
+"use client";
 
-import { Document, Page, Text, View, StyleSheet, Font } from "@react-pdf/renderer"
+import {
+  Document,
+  Page,
+  Text,
+  View,
+  StyleSheet,
+  Font,
+} from "@react-pdf/renderer";
 
 // Register fonts (optional - you can use system fonts)
 Font.register({
   family: "Roboto",
   src: "https://cdnjs.cloudflare.com/ajax/libs/ink/3.1.10/fonts/Roboto/roboto-light-webfont.ttf",
-})
+});
 
 interface SequenceData {
-  id: number
-  title: string
-  author: string
-  subject: string
-  submittedDate: string
-  status: string
-  programa: string
-  ciclo: string
-  nombre: string
-  perfil: string
-  posgrado: string
-  asignatura: string
-  aprendizajes: string
-  horas: number
-  impacto: string
-  competencia: string
-  criterio1: string
-  porcentaje1: number
-  criterio2: string
-  porcentaje2: number
-  criterio3: string
-  porcentaje3: number
-  bienvenida: string
-  contextualizacion: string
-  introduccion: string
-  tema: string
-  subtema1: string
-  subtema2: string
-  objetivo: string
-  evidencia: string
-  instrumento: string
-  actividad_inicio: string
-  actividad_desarrollo: string
-  actividad_cierre: string
-  actividad_final: string
-  criterio_eval1: string
-  criterio_eval2: string
-  instrumento1: string
-  instrumento2: string
-  nombre_firma: string
-  firma_academia: string
-  firma_coordinacion: string
-  dia: number
-  mes: string
-  anio: number
+  id: number;
+  title: string;
+  author: string;
+  subject: string;
+  submittedDate: string;
+  status: string;
+  programa: string;
+  ciclo: string;
+  nombre: string;
+  perfil: string;
+  posgrado: string;
+  asignatura: string;
+  aprendizajes: string;
+  horas: number;
+  impacto: string;
+  competencia: string;
+  criterio1: string;
+  porcentaje1: number;
+  criterio2: string;
+  porcentaje2: number;
+  criterio3: string;
+  porcentaje3: number;
+  bienvenida: string;
+  contextualizacion: string;
+  introduccion: string;
+  tema: string;
+  subtema1: string;
+  subtema2: string;
+  objetivo: string;
+  evidencia: string;
+  instrumento: string;
+  actividad_inicio: string;
+  actividad_desarrollo: string;
+  actividad_cierre: string;
+  actividad_final: string;
+  criterio_eval1: string;
+  criterio_eval2: string;
+  instrumento1: string;
+  instrumento2: string;
+  nombre_firma: string;
+  firma_academia: string;
+  firma_coordinacion: string;
+  dia: number;
+  mes: string;
+  anio: number;
 }
 
 const styles = StyleSheet.create({
@@ -179,26 +186,61 @@ const styles = StyleSheet.create({
     flex: 1,
     marginRight: 10,
   },
-})
+  table: {
+    display: "table",
+    width: "auto",
+    marginBottom: 10,
+  },
+  tableHeader: {
+    flexDirection: "row",
+    backgroundColor: "#f3f4f6",
+    borderBottomWidth: 1,
+    borderBottomColor: "#e5e7eb",
+  },
+  tableRow: {
+    flexDirection: "row",
+    borderBottomWidth: 1,
+    borderBottomColor: "#e5e7eb",
+    alignItems: "center",
+  },
+  tableColHeader: {
+    width: "20%",
+    padding: 8,
+    fontSize: 9,
+    fontWeight: "bold",
+    color: "#374151",
+    textAlign: "left",
+  },
+  tableCol: {
+    width: "20%",
+    padding: 8,
+    fontSize: 9,
+    color: "#1f2937",
+    textAlign: "left",
+  },
+  tableBody: {
+    backgroundColor: "#ffffff",
+  },
+});
 
 interface PDFDocumentProps {
-  data: SequenceData
+  data: SequenceData;
 }
 
 export function PDFDocument({ data }: PDFDocumentProps) {
   const getStatusStyle = (status: string) => {
-    const baseStyle = styles.statusBadge
+    const baseStyle = styles.statusBadge;
     switch (status) {
       case "Aprobado":
-        return [baseStyle, styles.statusApproved]
+        return [baseStyle, styles.statusApproved];
       case "Rechazado":
-        return [baseStyle, styles.statusRejected]
+        return [baseStyle, styles.statusRejected];
       case "En Supervisión":
-        return [baseStyle, styles.statusInReview]
+        return [baseStyle, styles.statusInReview];
       default:
-        return baseStyle
+        return baseStyle;
     }
-  }
+  };
 
   return (
     <Document>
@@ -459,10 +501,15 @@ export function PDFDocument({ data }: PDFDocumentProps) {
 
         {/* Footer */}
         <View style={styles.footer}>
-          <Text>Sistema de Supervisión Académica - Documento generado automáticamente</Text>
-          <Text>Fecha de generación: {new Date().toLocaleDateString("es-ES")}</Text>
+          <Text>
+            Sistema de Supervisión Académica - Documento generado
+            automáticamente
+          </Text>
+          <Text>
+            Fecha de generación: {new Date().toLocaleDateString("es-ES")}
+          </Text>
         </View>
       </Page>
     </Document>
-  )
+  );
 }

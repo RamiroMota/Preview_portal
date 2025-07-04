@@ -187,7 +187,7 @@ export function PendingReviewsTable() {
   }
 
   return (
-    <Card>
+    <Card className="shadow-2xl">
       <CardHeader>
         <CardTitle className="text-lg sm:text-xl font-semibold text-gray-900">Revisiones Pendientes</CardTitle>
         <CardDescription className="text-sm sm:text-base text-gray-600">
@@ -199,7 +199,7 @@ export function PendingReviewsTable() {
         <div className="hidden lg:block rounded-md border">
           <Table>
             <TableHeader>
-              <TableRow className="bg-gray-50">
+              <TableRow className="bg-gray-300">
                 <TableHead className="font-medium text-gray-700 w-16">No.</TableHead>
                 <TableHead className="font-medium text-gray-700">Título</TableHead>
                 <TableHead className="font-medium text-gray-700">Autor</TableHead>
@@ -218,7 +218,7 @@ export function PendingReviewsTable() {
                   <TableCell className="text-gray-600">{item.fechaEnvio}</TableCell>
                   <TableCell>
                     <div className="flex items-center space-x-2">
-                      <Button variant="outline" size="sm" onClick={() => handleViewDetails(item)}>
+                      <Button className="bg-purple-200 text-purple-700 border border-purple-700 hover:bg-purple-500 hover:text-white" variant="outline" size="sm" onClick={() => handleViewDetails(item)}>
                         <Eye className="h-4 w-4 mr-1" />
                         Ver
                       </Button>
@@ -330,7 +330,7 @@ export function PendingReviewsTable() {
                 <div className="flex flex-col sm:flex-row justify-end gap-3 pt-4">
                   <Button
                     variant="outline"
-                    className="w-full sm:w-auto"
+                    className="w-full sm:w-auto bg-slate-300 text-slate-500 border border-slate-500"
                     onClick={() => {
                       setIsRejectModalOpen(false)
                       setSelectedItem(null)
@@ -341,7 +341,7 @@ export function PendingReviewsTable() {
                   </Button>
                   <Button
                     variant="destructive"
-                    className="w-full sm:w-auto"
+                    className="w-full sm:w-auto bg-red-200 text-red-500 hover:text-red-100 border border-red-500"
                     onClick={() => {
                       console.log("Rechazando secuencia:", selectedItem.id, "Motivo:", rejectReason)
                       setIsRejectModalOpen(false)

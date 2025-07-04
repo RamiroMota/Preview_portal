@@ -155,7 +155,7 @@ export function ReviewedSequencesTable() {
   }
 
   return (
-    <Card>
+    <Card className="shadow-2xl">
       <LoadingSpinner isLoading={isGeneratingPDF !== null} />
       <CardHeader>
         <CardTitle className="text-lg sm:text-xl font-semibold text-gray-900">Secuencias Revisadas</CardTitle>
@@ -168,7 +168,7 @@ export function ReviewedSequencesTable() {
         <div className="hidden lg:block rounded-md border">
           <Table>
             <TableHeader>
-              <TableRow className="bg-gray-50">
+              <TableRow className="bg-gray-300">
                 <TableHead className="font-medium text-gray-700 w-16">No.</TableHead>
                 <TableHead className="font-medium text-gray-700">Título</TableHead>
                 <TableHead className="font-medium text-gray-700">Autor</TableHead>
@@ -187,7 +187,7 @@ export function ReviewedSequencesTable() {
                   <TableCell>{getStatusBadge(item.estado)}</TableCell>
                   <TableCell>
                     <div className="flex items-center space-x-2">
-                      <Button variant="outline" size="sm" onClick={() => handleViewDetails(item)}>
+                      <Button variant="outline" size="sm" onClick={() => handleViewDetails(item)} className="bg-purple-200 text-purple-700 border border-purple-700 hover:bg-purple-500 hover:text-white">
                         <Eye className="h-4 w-4 mr-1" />
                         Ver
                       </Button>
@@ -196,6 +196,7 @@ export function ReviewedSequencesTable() {
                         size="sm"
                         onClick={() => handleDownloadPDF(item)}
                         disabled={isGeneratingPDF === item.id}
+                        className="bg-amber-200 text-amber-700 border border-amber-700 hover:bg-amber-500 hover:text-white"
                       >
                         <Download className="h-4 w-4 mr-1" />
                         {isGeneratingPDF === item.id ? "..." : "PDF"}

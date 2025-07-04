@@ -154,7 +154,7 @@ export function RolesPermissionsTable() {
   }
 
   return (
-    <Card>
+    <Card className="shadow-2xl">
       <CardHeader>
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>

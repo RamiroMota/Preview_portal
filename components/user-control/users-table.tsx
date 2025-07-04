@@ -122,7 +122,7 @@ export function UsersTable() {
   }
 
   return (
-    <Card>
+    <Card className="shadow-2xl">
       <CardHeader>
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
@@ -131,7 +131,7 @@ export function UsersTable() {
               Administra los usuarios del sistema y sus estados
             </CardDescription>
           </div>
-          <Button className="bg-purple-600 hover:bg-purple-700 w-full sm:w-auto">
+          <Button className="w-full sm:w-auto" variant="control">
             <Plus className="h-4 w-4 mr-2" />
             Nuevo Usuario
           </Button>

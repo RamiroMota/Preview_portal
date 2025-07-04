@@ -135,13 +135,13 @@ export function SequenceDetailModal({
                   <Button
                     onClick={onApprove}
                     disabled={isApproving || isRejecting}
-                    className="bg-green-600 hover:bg-green-700"
+                    className="bg-green-200 text-green-700 border border-green-700 hover:bg-green-500 hover:text-green-100"
                     size="sm"
                   >
                     <CheckCircle className="h-4 w-4 mr-2" />
                     {isApproving ? "Aprobando..." : "Aprobar"}
                   </Button>
-                  <Button onClick={onReject} disabled={isApproving || isRejecting} variant="destructive" size="sm">
+                  <Button onClick={onReject} disabled={isApproving || isRejecting} variant="destructive" size="sm" className="bg-red-200 text-red-700 border border-red-700 hover:bg-red-500 hover:text-red-100">
                     <XCircle className="h-4 w-4 mr-2" />
                     Rechazar
                   </Button>
@@ -149,7 +149,7 @@ export function SequenceDetailModal({
               )}
               <Button
                 onClick={handleDownloadPDF}
-                className="bg-red-600 hover:bg-red-700"
+                className="bg-amber-200 text-amber-700 border border-amber-700 hover:bg-amber-500 hover:text-amber-100"
                 disabled={isGeneratingPDF}
                 size="sm"
               >
