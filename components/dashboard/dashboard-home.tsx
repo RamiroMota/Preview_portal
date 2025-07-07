@@ -34,7 +34,7 @@ export function DashboardHome() {
 
       {/* Estadísticas rápidas */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-3 sm:gap-6">
-        <Card className="bg-yellow-100 text-yellow-500 text-center shadow-2xl border border-yellow-500">
+        <Card className="bg-amber-100 text-amber-500 text-center shadow-2xl border border-yellow-500">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-xs sm:text-sm font-medium">
               Secuencias Pendientes
