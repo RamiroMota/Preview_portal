@@ -23,7 +23,7 @@ a.  **Clonar el Repositorio:**
 
 b.  **Navegar al Directorio del Proyecto:**
     ```bash
-    cd frontend
+    cd Preview_portal
     ```
 
 c.  **Instalar Dependencias:**
